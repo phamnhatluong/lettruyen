@@ -429,6 +429,7 @@ a{
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+  margin: 10px;
 }
 .pagination button {
   padding: 10px 15px;
@@ -507,3 +508,51 @@ a{
   border-radius: 5px;
   cursor: pointer;
 }
+
+.comic-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+#temp-message {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #e8e8e8;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.loader .dot {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid #e8e8e8;
+  background: #16b0c1;
+  animation: jump 0.8s ease-in-out infinite alternate;
+}
+@keyframes jump {
+  100% {
+      background: #661e92;
+      transform: translateZ(-3rem) scale(1.9);
+  }
+}
+.loader .dot:nth-child(1) { animation-delay: 0.09s; }
+.loader .dot:nth-child(2) { animation-delay: 0.19s; }
+.loader .dot:nth-child(3) { animation-delay: 0.29s; }
+.loader .dot:nth-child(4) { animation-delay: 0.39s; }
+.loader .dot:nth-child(5) { animation-delay: 0.49s; }
