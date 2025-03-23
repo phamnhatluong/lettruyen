@@ -1,52 +1,41 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const slug = urlParams.get("slug");
-    let chapterId = urlParams.get("chapter") || 1; // Mặc định chương 1
+    const chapterId = urlParams.get("chapter") || "6747db09c926626890a4e855"; // ID mặc định
 
-    if (!slug) {
-        console.error("❌ Không tìm thấy slug!");
-        return;
-    }
+    async function loadChapter(chapterId) {
+        try {
+            const response = await fetch(`https://sv1.otruyencdn.com/v1/api/chapter/${chapterId}`);
+            if (!response.ok) throw new Error(`Lỗi HTTP: ${response.status}`);
 
-    // Gọi API lấy thông tin truyện
-    fetch(`https://otruyenapi.com/v1/api/truyen-tranh/${slug}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === "success" && data.data.item) {
-                document.getElementById("comic-title").innerText = data.data.item.name;
+            const data = await response.json();
+            console.log("📌 Dữ liệu chương:", data);
+
+            if (!data || data.status !== "success" || !data.data) throw new Error("Dữ liệu không hợp lệ");
+
+            const chapter = data.data;
+            document.getElementById("chapter-title").innerText = `${chapter.comic_name} - Chương ${chapter.chapter_name}`;
+
+            // Hiển thị ảnh chương
+            const imageContainer = document.getElementById("image-container");
+            imageContainer.innerHTML = "";
+
+            if (chapter.item && chapter.item.chapter_image) {
+                const { domain_cdn, chapter_path, chapter_image } = chapter.item;
+
+                chapter_image.forEach(img => {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = `${domain_cdn}/${chapter_path}/${img.image_file}`;
+                    imgElement.className = "chapter-image";
+                    imageContainer.appendChild(imgElement);
+                });
+            } else {
+                imageContainer.innerHTML = "<h2>Không có hình ảnh để hiển thị.</h2>";
             }
-        })
-        .catch(error => console.error("❌ Lỗi khi tải truyện:", error));
-
-    // Gọi API lấy chương truyện
-    function loadChapter(chapterId) {
-        fetch(`https://otruyenapi.com/v1/api/chapter/${chapterId}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    document.getElementById("chapter-title").innerText = `Chương ${data.data.item.chapter_name}`;
-                    document.getElementById("chapter-content").innerHTML = data.data.item.image_urls
-                        .map(img => `<img src="${img}" alt="Trang truyện">`)
-                        .join("");
-
-                    // Chuyển chương
-                    document.getElementById("prev-chapter").onclick = function () {
-                        if (data.data.item.prev_chapter_id) {
-                            window.location.href = `read.html?slug=${slug}&chapter=${data.data.item.prev_chapter_id}`;
-                        }
-                    };
-
-                    document.getElementById("next-chapter").onclick = function () {
-                        if (data.data.item.next_chapter_id) {
-                            window.location.href = `read.html?slug=${slug}&chapter=${data.data.item.next_chapter_id}`;
-                        }
-                    };
-                } else {
-                    document.getElementById("chapter-content").innerHTML = "<p>Không tìm thấy nội dung chương!</p>";
-                }
-            })
-            .catch(error => console.error("❌ Lỗi khi tải chương:", error));
+        } catch (error) {
+            console.error("❌ Lỗi khi tải chương:", error);
+            document.getElementById("image-container").innerHTML = `<h2 style='color:red'>Không thể tải chương!</h2>`;
+        }
     }
 
-    loadChapter(chapterId);
+    await loadChapter(chapterId);
 });

@@ -24,7 +24,7 @@
 /* Ảnh bìa truyện */
 .comic-item img {
   width: 100%;
-  height: 250px;
+  height: 500px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
@@ -124,6 +124,10 @@
         flex-direction: column;
         overflow: hidden;
     }
+    .comic-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  }
     #chatbot-header {
         display: flex;
         align-items: center;
@@ -197,10 +201,10 @@
     /* Ảnh bìa truyện */
     .comic-item img {
       width: 100%;
-      height: 250px;
+      height: 400px;
       object-fit: cover;
       border-radius: 10px 10px 0 0;
-    }
+  }
     
     /* Thông tin truyện */
     .comic-info {
@@ -370,4 +374,136 @@
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+/*reponsive*/
+/* Khi màn hình nhỏ hơn 1024px (Tablet) */
+@media screen and (max-width: 1024px) {
+  .comic-list {
+      justify-content: center;
+  }
+  .comic-item {
+      width: 45%; /* Hiển thị 2 truyện trên mỗi hàng */
+  }
+}
+
+/* Khi màn hình nhỏ hơn 768px (Mobile) */
+@media screen and (max-width: 768px) {
+  .comic-header {
+      flex-direction: column;
+      text-align: center;
+  }
+  
+  .comic-item {
+      width: 100%; /* Hiển thị 1 truyện trên mỗi hàng */
+  }
+
+  /* Điều chỉnh menu */
+  .d-md-none {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+  }
+}
+
+/* Khi màn hình nhỏ hơn 480px (Mobile nhỏ) */
+@media screen and (max-width: 480px) {
+  .comic-title {
+      font-size: 16px;
+  }
+  
+  .comic-status {
+      font-size: 10px;
+  }
+
+  /* Điều chỉnh form đăng nhập */
+  .form-container {
+      width: 90%;
+  }
+}
+a{
+  text-decoration: none; /* Bỏ gạch chân cho link */
+  color: black;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.pagination button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 10px;
+}
+#prev-page { background-color: #dc3545; color: white; }
+#next-page { background-color: #ffc107; color: black; }
+#prev-page:disabled, #next-page:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.footer {
+  background-color: #111;
+  padding: 20px;
+  text-align: left;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #ccc
+}
+.footer a {
+  color: #f06292;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.footer h3 {
+  color: white;
+  margin-top: 20px;
+  font-size: 18px;
+}
+.footer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+.footer .email {
+  font-weight: bold;
+  color: white;
+}
+.footer .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+.footer .logo span {
+  font-weight: bold;
+  font-size: 26px;
+  text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+}
+.footer .logo .blue { color: #00a2ff; }
+.footer .logo .green { color: #4caf50; }
+.footer .logo .orange { color: #ff9800; }
+.footer .logo .pink { color: #f06292; }
+.footer .tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.footer .tag {
+  background-color: #333;
+  color: #bbb;
+  padding: 5px 10px;
+  margin: 3px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.footer .scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #222;
+  border: 1px solid #f06292;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
