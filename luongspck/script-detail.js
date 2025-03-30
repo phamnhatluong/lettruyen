@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 chapterList.innerHTML = "";
                 
                 let currentPage = 1;
-                const chaptersPerPage = 10;
+                const chaptersPerPage = 15;
                 let allChapters = [];
 
                 if (comic.chapters && comic.chapters.length > 0) {
