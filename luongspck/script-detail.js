@@ -26,48 +26,70 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("comic-status").innerText = comic.status === "ongoing" ? "Đang cập nhật" : "Hoàn thành";
                 document.getElementById("comic-updated").innerText = new Date(comic.updatedAt).toLocaleString();
 
-                // Xử lý danh sách chương
                 const chapterList = document.getElementById("chapter-list");
-                chapterList.innerHTML = ""; // Xóa danh sách cũ nếu có
+                chapterList.innerHTML = "";
+                
+                let currentPage = 1;
+                const chaptersPerPage = 10;
+                let allChapters = [];
 
                 if (comic.chapters && comic.chapters.length > 0) {
                     comic.chapters.forEach(server => {
                         server.server_data.forEach(chapter => {
-                            const li = document.createElement("li");
-                            li.innerHTML = `<a href="read.html?slug=${slug}&chapter=${chapter.chapter_api_data.split('/').pop()}">Chương ${chapter.chapter_name}</a>`;
-                            chapterList.appendChild(li);
+                            allChapters.push({
+                                name: chapter.chapter_name,
+                                link: `read.html?slug=${slug}&chapter=${chapter.chapter_api_data.split('/').pop()}`
+                            });
                         });
                     });
+                    
+                    function renderChapters(page) {
+                        chapterList.innerHTML = "";
+                        const start = (page - 1) * chaptersPerPage;
+                        const end = start + chaptersPerPage;
+                        const paginatedChapters = allChapters.slice(start, end);
 
-                    // Cập nhật nút "Đọc Truyện" với chương đầu tiên
+                        paginatedChapters.forEach(chapter => {
+                            const li = document.createElement("li");
+                            li.innerHTML = `<a href="${chapter.link}">Chương ${chapter.name}</a>`;
+                            chapterList.appendChild(li);
+                        });
+
+                        document.getElementById("page-number").innerText = `Trang ${currentPage} / ${Math.ceil(allChapters.length / chaptersPerPage)}`;
+                    }
+
+                    document.getElementById("prev-page").addEventListener("click", function () {
+                        if (currentPage > 1) {
+                            currentPage--;
+                            renderChapters(currentPage);
+                        }
+                    });
+
+                    document.getElementById("next-page").addEventListener("click", function () {
+                        if (currentPage < Math.ceil(allChapters.length / chaptersPerPage)) {
+                            currentPage++;
+                            renderChapters(currentPage);
+                        }
+                    });
+
+                    renderChapters(currentPage);
+
                     const readButton = document.getElementById("read-comic-btn");
-                    if (readButton && comic.chapters[0].server_data.length > 0) {
-                        readButton.href = `read.html?slug=${slug}&chapter=${comic.chapters[0].server_data[0].chapter_api_data.split('/').pop()}`;
+                    if (readButton && allChapters.length > 0) {
+                        readButton.href = allChapters[0].link;
                     } else {
                         console.error("❌ Không tìm thấy chương đầu tiên!");
                     }
                 } else {
-                    chapterList.innerHTML = "<p>Xin lỗi! Dữ liệu đang được cập nhật</p>";
+                    chapterList.innerHTML = "<p style='color:red'>Không có chương nào!</p>";
                 }
             } else {
                 console.error("⚠ API không có dữ liệu `item`.");
-                document.body.innerHTML = `<h2>❌ Không tìm thấy truyện. Dữ liệu API có thể bị lỗi.</h2>`;
+                document.body.innerHTML = `<h2 style='color:red'>❌ Không tìm thấy truyện. Dữ liệu API có thể bị lỗi.</h2>`;
             }
         })
         .catch(error => {
             console.error("❗ Lỗi khi tải chi tiết truyện:", error);
-            document.body.innerHTML = `<h2>❌ Lỗi khi tải truyện. Vui lòng thử lại sau.</h2>`;
+            document.body.innerHTML = `<h2 style='color:red'>❌ Lỗi khi tải truyện. Vui lòng thử lại sau.</h2>`;
         });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    const chapterLinks = document.querySelectorAll(".chapter-link");
-
-    chapterLinks.forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            const chapterId = this.getAttribute("data-chapter-id");
-            const slug = this.getAttribute("data-slug");
-            window.location.href = `read.html?slug=${slug}&chapter=${chapterId}`;
-        });
-    });
 });

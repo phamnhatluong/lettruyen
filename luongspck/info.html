@@ -3,55 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tìm kiếm truyện</title>
+    <title>LetTruyenX - Thế Giới Truyện Tranh Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .card {
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.card img {
-    height: 500px;
-    object-fit: cover;
-}
-
-.card-body {
-    text-align: center;
-    padding: 15px;
-}
-
-.card-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-}
-
-.chapter-link {
-    display: block;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.chapter-link:hover {
-    text-decoration: underline;
-}
-
-.comic-stats {
-    display: flex;
-    justify-content: space-around;
-    font-size: 14px;
-    margin-top: 10px;
-    color: #666;
-}
-
-    </style>
 </head>
 <body>
     <progress id="progressBar" value="0" max="100"></progress>
@@ -60,13 +16,6 @@
         <a href="index.html" class="d-flex align-items-center">
             <img class="lettruyen" src="Designer.png" alt="" style="width: 60px; height: 60px;">
         </a>
-        
-        <!-- Offcanvas Menu Button (Mobile) -->
-        <button class="btn btn-outline-light d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-            ☰
-        </button>
-        
-        <!-- Navbar (Desktop) -->
         <nav class="d-flex align-items-center gap-3 d-none d-md-flex">
             <a href="index.html" class="btn btn-outline-light">Trang chủ</a>
             
@@ -91,6 +40,14 @@
                 </ul>
             </div>
         </nav>
+        
+        <!-- Offcanvas Menu Button (Mobile) -->
+        <button class="btn btn-outline-light d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            ☰
+        </button>
+        
+        <!-- Navbar (Desktop) -->
+        
         
         <!-- Tìm kiếm + Đăng nhập -->
         <div class="d-flex align-items-center gap-3 d-none d-md-flex">
@@ -159,7 +116,7 @@
                         <input type="checkbox" id="remember" name="remember">
                         <label for="remember">Remember me</label>
                     </div>
-                    <a class="show-signup" href="needhelp.html">Need help?</a>
+                    <a href="needhelp.html">Need help?</a>
                 </div>
                 <button type="submit">Đăng nhập</button>
                 <p class="error-message"></p>
@@ -168,7 +125,6 @@
                 <p>New to Lettruyen? <a href="#" id="show-signup">Sign up now</a></p>
             </div>
         </div>
-
         <!-- Form đăng ký -->
         <div id="signup-form-container" style="display: none;">
             <h2>Đăng ký</h2>
@@ -186,7 +142,7 @@
                         <input type="checkbox" id="remember" name="remember">
                         <label for="remember">Remember me</label>
                     </div>
-                    <a class="show-signup" href="needhelp.html">Need help?</a>
+                    <a href="needhelp.html">Need help?</a>
                 </div>
                 <button type="submit">Đăng ký</button>
             </form>
@@ -195,31 +151,21 @@
             </div>
         </div>
     </div>
-
-    <div class="container mt-4">
-        <!-- Thanh tìm kiếm -->
-        <div class="row">
-            <div class="col-md-10">
-                <input type="text" id="search-input" class="form-control" placeholder="Nhập tên truyện...">
-            </div>
-            <div class="col-md-2">
-                <button id="search-btn" class="btn btn-danger w-100">🔍</button>
-            </div>
-        </div>
-
-        <!-- Kết quả tìm kiếm -->
-        <div id="search-results" class="mt-4 row"></div>
-
-        <!-- Phân trang -->
-        <nav>
-            <ul class="pagination justify-content-center mt-4" id="pagination"></ul>
-        </nav>    <div class="loader" id="loader">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
+    <div style="max-width: 800px; margin: auto;">
+    <h1><a href="index.html" style="color: red;">LetTruyenX</a> - Thế Giới Truyện Tranh Online</h1>
+    <p>Bạn là một tín đồ của truyện tranh? Bạn muốn thỏa sức khám phá những bộ truyện tranh đỉnh cao từ khắp nơi trên thế giới mà không cần chờ đợi? Hãy đến với <strong>LetTruyenX</strong>, nền tảng đọc truyện tranh online hoàn toàn miễn phí, nơi cập nhật liên tục những tác phẩm mới nhất!</p>
+    
+    <h2>Điểm nổi bật của LetTruyenX:</h2>
+    <ul>
+        <li><strong>Kho truyện khổng lồ:</strong> Từ manga Nhật Bản, manhwa Hàn Quốc đến manhua Trung Quốc, tất cả đều có sẵn để bạn lựa chọn và thưởng thức. Mỗi tuần đều có hàng loạt đầu truyện mới được cập nhật.</li>
+        <li><strong>Giao diện thân thiện:</strong> Giao diện của chúng tôi được thiết kế tối ưu, giúp bạn dễ dàng tìm kiếm truyện yêu thích, trải nghiệm đọc trơn tru ngay cả trên thiết bị di động.</li>
+        <li><strong>Chất lượng hình ảnh sắc nét:</strong> Bạn sẽ được thưởng thức từng khung hình rõ ràng, sống động, giúp bạn cảm nhận từng chi tiết trong câu chuyện.</li>
+        <li><strong>Hỗ trợ đọc offline:</strong> Bạn có thể tải về những tập truyện yêu thích và đọc chúng bất cứ lúc nào, ngay cả khi không có kết nối internet.</li>
+        <li><strong>Cộng đồng người hâm mộ:</strong> Không chỉ là nơi đọc truyện, LetTruyenX còn là nơi các fan giao lưu, chia sẻ đam mê thông qua các bài bình luận, đánh giá về từng bộ truyện.</li>
+    </ul>
+    
+    <p> <strong>Hãy đến ngay với LetTruyenX để bắt đầu hành trình phiêu lưu trong thế giới truyện tranh đa dạng, đầy hấp dẫn!</strong></p>
+    
     </div>
     <footer class="footer">
         <div class="logo">
@@ -228,7 +174,7 @@
             <span class="orange">t</span>
             <span class="pink">Truyen</span>
         </div>
-        <p><a href="#">Giới thiệu</a> | <a href="#">Liên hệ</a></p>
+        <p><a href="info.html">Giới thiệu</a> | <a href="#">Liên hệ</a></p>
         <p><a href="#">Điều khoản</a> | <a href="#">Chính sách bảo mật</a></p>
         <h3>Liên hệ đặt quảng cáo</h3>
         <p class="email">Email: nhatluonggamer@gmail.com</p>
@@ -244,12 +190,12 @@
             <div class="tag">manhwa</div>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
     <script src="login.js"></script>
-    <script src="search.js"></script>
-    <script src="loader.js"></script>
     <script type="application/javascript">
         (function(w,d,s,o,f,js,fjs){w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments);};(js=d.createElement(s)),(fjs=d.getElementsByTagName(s)[0]);js.id=o;js.src=f;js.async=1;js.referrerPolicy = "origin";fjs.parentNode.insertBefore(js,fjs);})(window,document,"script","copilot","https://script.copilot.live/v1/copilot.min.js?tkn=cat-hzihpyfq");
         copilot("init",{});
         </script>
-</body>
+        <script src="loader.js"></script</body>
 </html>

@@ -20,6 +20,7 @@
     </style>
 </head>
 <body>
+    <progress id="progressBar" value="0" max="100"></progress>
     <header class="bg-dark text-white p-3 d-flex justify-content-between align-items-center" style="position: sticky; top: 0; z-index: 1000; height: 80px;">
         <!-- Logo -->
         <a href="index.html" class="d-flex align-items-center">
@@ -125,7 +126,7 @@
                         <input type="checkbox" id="remember" name="remember">
                         <label for="remember">Remember me</label>
                     </div>
-                    <a href="needhelp.html">Need help?</a>
+                    <a class="show-signup" href="needhelp.html">Need help?</a>
                 </div>
                 <button type="submit">Đăng nhập</button>
                 <p class="error-message"></p>
@@ -181,7 +182,7 @@
             <span class="orange">t</span>
             <span class="pink">Truyen</span>
         </div>
-        <p><a href="#">Giới thiệu</a> | <a href="#">Liên hệ</a></p>
+        <p><a href="info.html">Giới thiệu</a> | <a href="#">Liên hệ</a></p>
         <p><a href="#">Điều khoản</a> | <a href="#">Chính sách bảo mật</a></p>
         <h3>Liên hệ đặt quảng cáo</h3>
         <p class="email">Email: nhatluonggamer@gmail.com</p>
@@ -206,5 +207,6 @@
         copilot("init",{});
         </script>
         <script src="loader.js"></script>
+        
 </body>
 </html>
